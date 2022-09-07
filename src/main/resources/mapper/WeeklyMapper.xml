@@ -15,6 +15,10 @@
      order by model_date desc
   </select>
 
+    <insert id="setModel">
+   insert into weekly_basic (model_date,create_time) values (#{insertDate},#{date})
+  </insert>
+
 
 
     <select id="WeeklyMeetingTopic" resultType="map">

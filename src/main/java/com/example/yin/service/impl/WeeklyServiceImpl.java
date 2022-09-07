@@ -21,6 +21,12 @@ public class WeeklyServiceImpl implements WeeklyService {
     }
 
     @Override
+    public int setModel(JSONObject params) {
+        return weeklyMapper.setModel(params) > 0;
+    }
+
+
+    @Override
     public  Map<String, Object> WeeklyInfoDetail(JSONObject params) {
         Map<String, Object> result = new HashMap<>();
         String model_date = params.get("model_date").toString();

@@ -41,15 +41,29 @@ public class WeeklyController {
         return weeklyService.WeeklyInfo(jsonObject);
     }
 
-    @RequestMapping(value = "/Weekly/WeeklyInfoDetail", method = RequestMethod.GET)
-    public Object WeeklyInfoDetail(HttpServletRequest req) {
+
+    /**
+     * 周报模板生成
+     */
+    @RequestMapping(value = "/Weekly/setModel", method = RequestMethod.GET)
+    public Object setModel(HttpServletRequest req) {
         JSONObject jsonObject = new JSONObject();
-        String id = req.getParameter("id").trim();
-        String model_date = req.getParameter("model_date").trim();
-        jsonObject.put("id", id);
-        jsonObject.put("model_date", model_date);
-        return weeklyService.WeeklyInfoDetail(jsonObject);
+        SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+        simple.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+        String now5 = simple.format(new Date());
+        String insertDate = req.getParameter("insertDate").trim();
+        jsonObject.put("insertDate", insertDate);
+        jsonObject.put("date", now5);
+
+
+        return weeklyService.setModel(jsonObject);
     }
+
+
+
+
+
+
 
     /**
      * 周报专题会议

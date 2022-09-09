@@ -10,7 +10,7 @@ public interface WeeklyService {
 
     List<Map<String, Object>> WeeklyInfo(JSONObject params);
     Map<String, Object> WeeklyInfoDetail(JSONObject params);
-    int setModel(JSONObject params);
+    boolean setModel(JSONObject params);
 
 
 }

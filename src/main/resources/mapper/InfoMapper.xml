@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.yin.dao.InfoMapper" >
+
+  <select id="getUserCount" resultType="map">
+    select count(*) as userCount
+    from admin
+     where 1 = 1
+  </select>
+
+  <select id="getMeetCount" resultType="map">
+    select count(*) as meetCount
+    from MeetingInfo
+     where 1 = 1
+  </select>
+
+  <select id="getWeeklyCount" resultType="map">
+    select count(*) as weeklyCount
+    from weekly_basic
+     where 1 = 1
+  </select>
+
+  <select id="getUserType1" resultType="map">
+    select count(*) as userCount
+    from admin
+     where manage = 1
+  </select>
+
+  <select id="getUserType2" resultType="map">
+    select count(*) as userCount
+    from admin
+     where manage = 0
+  </select>
+
+
+  <select id="getMeetingType1" resultType="map">
+    select count(*) as meetingType
+    from MeetingInfo
+     where meeting_type = 1
+  </select>
+
+  <select id="getMeetingType2" resultType="map">
+    select count(*) as meetingType
+    from MeetingInfo
+     where meeting_type = 2
+  </select>
+
+  <select id="getMeetingType3" resultType="map">
+    select count(*) as meetingType
+    from MeetingInfo
+     where meeting_type = 3
+  </select>
+
+  <select id="getMeetingType4" resultType="map">
+    select count(*) as meetingType
+    from MeetingInfo
+     where meeting_type = 4
+  </select>
+
+  <select id="getMeetingType5" resultType="map">
+    select count(*) as meetingType
+    from MeetingInfo
+     where meeting_type = 5
+  </select>
+
+  <select id="getMeetingType6" resultType="map">
+    select count(*) as meetingType
+    from MeetingInfo
+     where meeting_type = 6
+  </select>
+</mapper>

@@ -10,7 +10,7 @@ import java.util.Map;
 @Repository
 public interface WeeklyMapper {
 
-
+    List<Map<String, Object>> getOption();
     List<Map<String, Object>> WeeklyInfo(JSONObject params);
     List<Map<String, Object>> WeeklyMeeting(JSONObject params);
     List<Map<String, Object>> WeeklyMeetingTopic(JSONObject params);

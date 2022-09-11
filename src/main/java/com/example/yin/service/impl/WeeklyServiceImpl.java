@@ -15,6 +15,16 @@ public class WeeklyServiceImpl implements WeeklyService {
     @Autowired
     private WeeklyMapper weeklyMapper;
 
+
+
+    @Override
+    public List<Map<String, Object>> getOption() {
+        return weeklyMapper.getOption();
+    }
+
+
+
+
     @Override
     public  List<Map<String, Object>> WeeklyInfo(JSONObject params) {
         return weeklyMapper.WeeklyInfo(params);

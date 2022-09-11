@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.yin.dao.WeeklyMapper" >
+<mapper namespace="com.example.yin.dao.WeeklyMapper">
 
-  <select id="WeeklyInfo" resultType="map">
-    select *
-    from weekly_basic
-     where 1 = 1
-    <if test="weeklyYear != null and weeklyYear!= '' " >
-      and model_date like CONCAT('%','${weeklyYear}','%' )
-    </if>
-   <if test="weeklyDate != null and weeklyDate != '' " >
-      and model_date = #{model_date}
-    </if>
-     order by model_date desc
-  </select>
+
+    <select id="getOption" resultType="map">
+        select distinct model_date
+        from weekly_basic
+        where 1 = 1
+    </select>
+
+
+    <select id="WeeklyInfo" resultType="map">
+        select *
+        from weekly_basic
+        where 1 = 1
+        <if test="weeklyDate != null and weeklyDate != '' ">
+            and model_date like '%${weeklyDate}%'
+        </if>
+        <if test="weeklyYear != null and weeklyYear!= '' ">
+            and model_date like CONCAT('%','${weeklyYear}','%' )
+        </if>
+        order by model_date desc
+    </select>
 
     <insert id="setModel">
    insert into weekly_basic (model_date,create_time) values (#{insertDate},#{date})
   </insert>
 
 
-
     <select id="WeeklyMeetingTopic" resultType="map">
         select *
         from weekly_meeting
         where 1 = 1 and meeting_type = 1
-        <if test="id != null and id!= '' " >
+        <if test="id != null and id!= '' ">
             and weekly_id = #{id}
         </if>
         order by meeting_type desc
@@ -34,8 +41,8 @@
     <select id="WeeklyMeetingAffairs" resultType="map">
         select *
         from weekly_meeting
-        where 1 = 1  and meeting_type = 2
-        <if test="id != null and id!= '' " >
+        where 1 = 1 and meeting_type = 2
+        <if test="id != null and id!= '' ">
             and weekly_id = #{id}
         </if>
         order by meeting_type desc
@@ -46,7 +53,7 @@
         select *
         from weekly_normal
         where 1 = 1
-        <if test="id != null and id!= '' " >
+        <if test="id != null and id!= '' ">
             and weekly_id = #{id}
         </if>
         order by id
@@ -57,7 +64,7 @@
         select *
         from weekly_lvtong
         where 1 = 1
-        <if test="id != null and id!= '' " >
+        <if test="id != null and id!= '' ">
             and weekly_id = #{id}
         </if>
         order by id
@@ -68,7 +75,7 @@
         select *
         from weekly_other
         where 1 = 1
-        <if test="id != null and id!= '' " >
+        <if test="id != null and id!= '' ">
             and weekly_id = #{id}
         </if>
         order by id
@@ -79,7 +86,7 @@
         select *
         from weekly_next
         where 1 = 1
-        <if test="id != null and id!= '' " >
+        <if test="id != null and id!= '' ">
             and weekly_id = #{id}
         </if>
         order by id
@@ -90,7 +97,7 @@
         select *
         from weekly_research
         where 1 = 1
-        <if test="id != null and id!= '' " >
+        <if test="id != null and id!= '' ">
             and weekly_id = #{id}
         </if>
         limit 1

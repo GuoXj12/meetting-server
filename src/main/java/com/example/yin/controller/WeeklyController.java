@@ -1,6 +1,7 @@
 package com.example.yin.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.yin.domain.ListSong;
 import com.example.yin.domain.Metting;
 import com.example.yin.service.impl.WeeklyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Map.Entry;
-
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
@@ -28,6 +30,12 @@ public class WeeklyController {
      */
     @Autowired
     private WeeklyServiceImpl weeklyService;
+
+
+    @RequestMapping(value = "/Weekly/getOption", method = RequestMethod.GET)
+    public Object getTotalData() {
+        return weeklyService.getOption();
+    }
 
 
     @RequestMapping(value = "/Weekly/WeeklyInfo", method = RequestMethod.GET)
@@ -60,12 +68,29 @@ public class WeeklyController {
         JSONObject jsonObject = new JSONObject();
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
         simple.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
-        String insertDate = req.getParameter("insertDate");
+        String insertDate = req.getParameter("insertDate");;
 
         jsonObject.put("insertDate", insertDate);
         jsonObject.put("date", new Date());
         return weeklyService.setModel(jsonObject);
     }
+    /**
+     * 保存会议
+     */
+
+
+
+    @RequestMapping(value =  "/Weekly/saveMeeting", method = RequestMethod.POST)
+    public Object saveMeeting(JSONObject  req) {
+        System.out.println("DDDDDDDDDD");
+        System.out.println(req);
+
+        System.out.println("DDDDDDDDDD");
+        return 1;
+    }
+
+
+
 
 
     /**
@@ -91,14 +116,4 @@ public class WeeklyController {
         return map;
     }
 
-
-    @RequestMapping(value = "/Weekly/saveMeetingTopic", method = RequestMethod.POST)
-    public Object saveMeetingTopic( HttpServletRequest req) {
-        System.out.println("DDDDDDDDDD");
-        System.out.println(((handleParamToMap(req))));
-        System.out.println("DDDDDDDDDD");
-        System.out.println("DDDDDDDDDD");
-
-        return 1;
-    }
 }

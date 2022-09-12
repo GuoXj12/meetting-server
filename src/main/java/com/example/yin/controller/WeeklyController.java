@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map.Entry;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
@@ -68,7 +69,7 @@ public class WeeklyController {
         JSONObject jsonObject = new JSONObject();
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
         simple.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
-        String insertDate = req.getParameter("insertDate");;
+        String insertDate = req.getParameter("insertDate");
 
         jsonObject.put("insertDate", insertDate);
         jsonObject.put("date", new Date());
@@ -81,15 +82,23 @@ public class WeeklyController {
 
 
     @RequestMapping(value =  "/Weekly/saveMeeting", method = RequestMethod.POST)
-    public Object saveMeeting(JSONObject  req) {
-        System.out.println("DDDDDDDDDD");
-        System.out.println(req);
+    public Object saveMeeting(@RequestParam Map<String, JSONObject> params) {
 
-        System.out.println("DDDDDDDDDD");
+      //  String InsertId = params.get("insetBasic").get("id").toString();
+        System.out.println("KKKKK");
+        System.out.println(params.get("insetBasic"));
+        System.out.println(params.get("meetingTopic"));
+        System.out.println(params.get("meetingAffairs"));
+       // System.out.println(params.get("insetBasic").toString());
+
+        System.out.println("KKKKK");
+        System.out.println("KKKKK");
+
+
+
+
         return 1;
     }
-
-
 
 
 

@@ -70,10 +70,31 @@ public class WeeklyController {
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
         simple.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         String insertDate = req.getParameter("insertDate");
-
         jsonObject.put("insertDate", insertDate);
         jsonObject.put("date", new Date());
-        return weeklyService.setModel(jsonObject);
+
+        try {
+            int count =weeklyService.modelCount(jsonObject);
+            if (count < 1) {
+                weeklyService.setModel(jsonObject);
+                jsonObject.put("code", 1);
+                jsonObject.put("success", true);
+                jsonObject.put("msg", "添加成功");
+                jsonObject.put("type", "success");
+            } else {
+                jsonObject.put("code", 0);
+                jsonObject.put("success", false);
+                jsonObject.put("msg", "已存在，请勿重复添加");
+                jsonObject.put("type", "error");
+            }
+            return jsonObject;
+        } catch (DuplicateKeyException e) {
+            jsonObject.put("code", 2);
+            jsonObject.put("success", false);
+            jsonObject.put("msg", "添加失败");
+            jsonObject.put("type", "error");
+            return jsonObject;
+        }
     }
     /**
      * 保存会议

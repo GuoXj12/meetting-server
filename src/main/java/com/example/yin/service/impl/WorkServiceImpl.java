@@ -36,10 +36,11 @@ public class WorkServiceImpl implements WorkService {
         return workMapper.updateWork(params) > 0;
     }
 
+
     //    删除用户
     @Override
-    public boolean deletWork(Integer id) {
-        return workMapper.deletWork(id) > 0;
+    public boolean deleteWork(Integer id) {
+        return workMapper.deleteWork(id) > 0;
     }
 
 }

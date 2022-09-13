@@ -12,7 +12,7 @@ public interface WorkMapper {
 
     List<Map<String,Object>> WorkInfo(JSONObject params);
 
-    int deletWork(Integer id);
+    int deleteWork(Integer id);
 
     int updateWork(JSONObject params);
 

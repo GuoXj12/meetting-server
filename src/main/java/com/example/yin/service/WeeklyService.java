@@ -12,4 +12,5 @@ public interface WeeklyService {
     Map<String, Object> WeeklyInfoDetail(JSONObject params);
     boolean setModel(JSONObject params);
     List<Map<String, Object>> getOption();
+    int modelCount(JSONObject params);
 }

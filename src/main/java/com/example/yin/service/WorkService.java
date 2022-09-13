@@ -10,6 +10,6 @@ public interface WorkService {
 
     List<Map<String,Object>> WorkInfo(JSONObject params);
     boolean addWork(JSONObject params);
-    boolean deletWork(Integer id);
+    boolean deleteWork(Integer id);
     boolean updateWork(JSONObject params);
 }

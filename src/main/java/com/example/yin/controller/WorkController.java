@@ -73,9 +73,9 @@ public class WorkController {
      * 删除会议
      */
     @RequestMapping(value = "/Work/delete", method = RequestMethod.GET)
-    public Object deletWork(HttpServletRequest req) {
+    public Object deleteWork(HttpServletRequest req) {
         String id = req.getParameter("id");
-        return workService.deletWork(Integer.parseInt(id));
+        return workService.deleteWork(Integer.parseInt(id));
     }
 
 
@@ -98,9 +98,10 @@ public class WorkController {
         updateParams.put("work_time", work_time);
         updateParams.put("work_remake", work_remake);
         updateParams.put("work_topic", work_topic);
-
+        updateParams.put("id", id);
 
         boolean res = workService.updateWork(updateParams);
+
         if (res) {
             jsonObject.put("code", 1);
             jsonObject.put("msg", "修改成功");

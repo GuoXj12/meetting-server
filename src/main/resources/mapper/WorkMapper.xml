@@ -5,7 +5,7 @@
   <select id="WorkInfo" resultType="map">
     select *
     from WorkInfo
-     where 1 = 1
+     where 1 = 1 and state = 1
     <if test="work_time != null and work_time!= '' " >
       and work_time like CONCAT('%','${work_time}','%' )
     </if>
@@ -19,31 +19,28 @@
     -->
     insert into WorkInfo (work_time,
     work_topic,
-    work_remake)
-    values (#{work_time},#{work_topic},#{work_remake})
+    work_remake,state)
+    values (#{work_time},#{work_topic},#{work_remake},1)
   </insert>
 
-  <delete id="deleteWork" parameterType="java.lang.Integer" >
-
-    delete from WorkInfo
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-
-
-  <update id="updateWork">
+  <update id="deleteWork" parameterType="java.lang.Integer" >
 
     update WorkInfo
-    <set >
-      <if test="work_time != null" >
-        work_time = #{work_time,jdbcType=VARCHAR},
-      </if>
-      <if test="work_topic != null" >
-        work_topic = #{work_topic,jdbcType=VARCHAR},
-      </if>
-      <if test="work_remake != null" >
-        work_remake = #{work_remake,jdbcType=VARCHAR},
-      </if>
+    <set>
+      state = 0
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
+  </update>
+
+
+  <update id="updateWork" parameterType="java.util.Map">
+
+    update WorkInfo
+    <set>
+        work_time = #{work_time},
+        work_topic = #{work_topic},
+        work_remake = #{work_remake}
+    </set>
+    where id = #{id}
   </update>
 </mapper>

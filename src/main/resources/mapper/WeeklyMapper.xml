@@ -27,6 +27,14 @@
    insert into weekly_basic (model_date,create_time) values (#{insertDate},#{date})
   </insert>
 
+    <select id="modelCount" resultType="int">
+        select count(*)
+        from weekly_basic
+        where 1 = 1
+        <if test="insertDate != null and insertDate!= '' ">
+          and  model_date = #{insertDate}
+        </if>
+    </select>
 
     <select id="WeeklyMeetingTopic" resultType="map">
         select *

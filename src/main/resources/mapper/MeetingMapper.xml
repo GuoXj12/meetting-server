@@ -5,7 +5,7 @@
   <select id="MeetingInfo" resultType="map">
     select *
     from MeetingInfo
-     where 1 = 1
+     where 1 = 1 and state = 1
     <if test="meeting_name != null and meeting_name!= '' " >
       and meeting_name like CONCAT('%','${meeting_name}','%' )
     </if>
@@ -29,15 +29,20 @@
     meeting_place,
     meeting_time,
     meeting_remake,
-    create_time)
-    values (#{meeting_type},#{meeting_name},#{meeting_topic},#{meeting_place},#{meeting_time},#{meeting_remake},#{create_time})
+    create_time,
+    state)
+    values (#{meeting_type},#{meeting_name},#{meeting_topic},#{meeting_place},#{meeting_time},#{meeting_remake},#{create_time},1)
   </insert>
 
-  <delete id="deleteMeeting" parameterType="java.lang.Integer" >
+  <update id="deleteMeeting" parameterType="java.lang.Integer" >
 
-    delete from MeetingInfo
+    update MeetingInfo
+    <set >
+      state = 0
+
+    </set>
     where id = #{id,jdbcType=INTEGER}
-  </delete>
+  </update>
 
 
   <update id="updateMeeting" parameterType="com.example.yin.domain.Metting" >

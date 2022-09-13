@@ -21,6 +21,7 @@ public interface WeeklyMapper {
     List<Map<String, Object>> WeeklyOther(JSONObject params);
     List<Map<String, Object>> WeeklyNext(JSONObject params);
     Map<String, Object> WeeklyResearch(JSONObject params);
+    int modelCount(JSONObject params);
     int setModel(JSONObject params);
 
 }

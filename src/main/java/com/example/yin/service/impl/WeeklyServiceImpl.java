@@ -31,6 +31,11 @@ public class WeeklyServiceImpl implements WeeklyService {
     }
 
     @Override
+    public  int modelCount(JSONObject params) {
+        return weeklyMapper.modelCount(params);
+    }
+
+    @Override
     public boolean setModel(JSONObject params) {
         return weeklyMapper.setModel(params) > 0;
     }
